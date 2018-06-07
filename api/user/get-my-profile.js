@@ -1,5 +1,4 @@
 const router = require('koa-router')()
-const User = require('../../models/user')
 
 /**
  * @api {get} /me/profile Get profile by auth token
@@ -10,7 +9,7 @@ const User = require('../../models/user')
  * @apiSampleRequest /me/profile
  */
 router.get('/me/profile', async (ctx) => {
-  ctx.body = User
+  ctx.body = {}
 })
 
 module.exports = router

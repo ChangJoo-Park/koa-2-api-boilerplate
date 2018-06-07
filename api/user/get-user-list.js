@@ -1,5 +1,4 @@
 const router = require('koa-router')()
-const User = require('../../models/user')
 
 /**
  * @api {get} /users Get user list
