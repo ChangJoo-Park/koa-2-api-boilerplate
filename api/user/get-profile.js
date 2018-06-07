@@ -8,7 +8,6 @@ const router = require('koa-router')()
  * @apiSampleRequest /users/:user_id
  */
 router.get('/users/:user_id', async (ctx) => {
-  console.log(User)
   ctx.body = {}
 })
 
