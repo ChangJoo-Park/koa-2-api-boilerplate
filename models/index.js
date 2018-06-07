@@ -17,13 +17,13 @@ readdirpSync(__dirname, (filePath, stats) => {
     }
     return {
       path: filePath,
-      name: path.basename(filePath).replace('.js', '')
+      name: capitalize(path.basename(filePath).replace('.js', ''))
     }
   })
   .map(({
     name,
     path
-  }) => mongoose.model(capitalize(name), new Schema(require(path))))
+  }) => mongoose.model(name, new Schema(require(path))))
   .forEach(model => models[model.modelName] = model)
 
 module.exports = models
