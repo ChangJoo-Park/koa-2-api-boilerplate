@@ -1,25 +1,27 @@
 {
   "name": "koa-2-api-boilerplate",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Koa 2 based API boilerplate",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint **/*.js -c .eslintrc.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["koa2", "boilerplate"],
+  "author": "ChangJoo Park<pcjpcj2@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@koa/cors": "^2.2.1",
     "es6-error": "^4.1.1",
+    "fs-readdirp": "^1.0.0",
     "koa": "^2.5.1",
     "koa-body": "^4.0.1",
     "koa-router": "^7.4.0",
-    "koa-validate": "^1.0.7"
+    "koa-validate": "^1.0.7",
+    "readdirp": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0"
+    "eslint-config-standard": "^11.0.0",
+    "nodemon": "^1.17.5"
   }
 }
