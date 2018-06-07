@@ -1,21 +1,29 @@
 const readdirpSync = require('fs-readdirp').readdirpSync
 
 const capitalize = require('../utils/capitalize')
-const isModuleFile = require('../utils/is-module-file')
+const isNotModuleFile = require('../utils/is-not-module-file')
 const getBaseName = require('../utils/get-basename')
 const arrayToObject = require('../utils/array-to-object')
 const mongoose = require('../db')
 const Schema = mongoose.Schema
 
-const models = readdirpSync(__dirname, (filePath, stats) => {
-    const isNotModule = isModuleFile(filePath, stats)
+const getFilePathObjectFromPath = (filePath, stats) => {
+  const isNotModule = isNotModuleFile(filePath, stats)
 
-    if (isNotModule) return false
+  if (isNotModule) return false
 
-    const name = capitalize(getBaseName(filePath))
-    return { name, filePath }
-  })
-  .map(({ name, filePath }) => mongoose.model(name, new Schema(require(filePath))))
-  .reduce((obj, item) => arrayToObject(obj, item, 'modelName'), {})
+  const name = capitalize(getBaseName(filePath))
+  return { name, filePath }
+}
 
-module.exports = models
+const createMongooseModel = ({name, filePath}) => {
+  return mongoose.model(name, new Schema(require(filePath)))
+}
+
+const redueModelArrayToObject = (obj, item) => {
+  return arrayToObject(obj, item, 'modelName')
+}
+
+module.exports = readdirpSync(__dirname, getFilePathObjectFromPath)
+.map(createMongooseModel)
+.reduce(redueModelArrayToObject, {})
