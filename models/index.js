@@ -8,7 +8,7 @@ const Schema = mongoose.Schema
 
 const models = {}
 
-const files = readdirpSync(__dirname, (filePath, stats) => {
+readdirpSync(__dirname, (filePath, stats) => {
     if (stats.isDirectory() ||
       filePath.includes('index.js') ||
       !filePath.includes('.js')
