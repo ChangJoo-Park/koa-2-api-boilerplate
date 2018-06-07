@@ -6,9 +6,7 @@ const capitalize = require('../utils/capitalize')
 const mongoose = require('../db')
 const Schema = mongoose.Schema
 
-const models = {}
-
-readdirpSync(__dirname, (filePath, stats) => {
+const models = readdirpSync(__dirname, (filePath, stats) => {
     if (stats.isDirectory() ||
       filePath.includes('index.js') ||
       !filePath.includes('.js')
@@ -24,6 +22,9 @@ readdirpSync(__dirname, (filePath, stats) => {
     name,
     path
   }) => mongoose.model(name, new Schema(require(path))))
-  .forEach(model => models[model.modelName] = model)
+  .reduce((obj, item) => {
+    obj[item['modelName']] = item
+    return obj
+  }, {})
 
 module.exports = models
