@@ -21,6 +21,7 @@
     "koa-body": "^4.0.1",
     "koa-router": "^7.4.0",
     "koa-validate": "^1.0.7",
+    "mongoose": "^5.1.4",
     "readdirp": "^2.1.0"
   },
   "devDependencies": {
